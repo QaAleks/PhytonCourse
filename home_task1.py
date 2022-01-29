@@ -8,7 +8,7 @@ for i in range(100):
 # use method appent add to the list 1000 values. raindit-existing method in random library
     a_list.append(random.randint(0, 1000))
 
-# start sorting. Set for variable k a start number to the value of a_list
+# start sorting. Set for variable k index numbers to the each value of a_list (from 0 to 99)
 for k in range(len(a_list)):
     #set for variable j value k+1 for a_list
     for j in range(k + 1, len(a_list)):
