@@ -5,10 +5,12 @@ from string import ascii_lowercase
 rnd_list = [{choice(ascii_lowercase): randint(0, 100) for i in range(len(ascii_lowercase))} for j in range(randint(2, 3))]
 print(rnd_list)
 
+# define two additional dict
 result_dict, tmp_dict = {}, {}
 for dictionary in rnd_list:
- # assign each id particaular values from dict
+ # assign each id particular values from dict
   for k, m in dictionary.items():
+#setdefault() method returns the value of a key (if the key is in dictionary). If not, it inserts key with a value to the dictionary
     tmp_dict.setdefault(k, []).append(m)
 
 # Define the biggest values from all dict if ids are duplicated in several dict
@@ -18,4 +20,4 @@ for k, m in tmp_dict.items():
 # if id is distinct (not duplicated), print it without '_index dict'
   else: result_dict[k] = m[0]
 
-print(result_dict)
+print(result_dict)/
