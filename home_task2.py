@@ -2,7 +2,7 @@ from random import randint, choice
 from string import ascii_lowercase
 #create dictionary with random list using random library and method randint
 #generate id's as letters using string library
-rnd_list = [{choice(ascii_lowercase): randint(0, 100) for i in range(len(ascii_lowercase))} for j in range(randint(2, 3))]
+rnd_list = [{choice(ascii_lowercase): randint(0, 100) for i in range(randint(0,len(ascii_lowercase)))} for j in range(randint(2, 3))]
 print(rnd_list)
 
 # define two additional dict
