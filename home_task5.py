@@ -13,8 +13,6 @@
 # num = a.entered_value
 from datetime import datetime
 
-
-
 class Publishing:
     def __init__(self,  text):
         self.i = text
@@ -51,7 +49,6 @@ def main():
         date_time = now.strftime("%m/%d/%Y, %H:%M")
         print(date_time)
         a = News(val)
-        # b=main.city
 
         f = open(r"C:\WORK\Test.txt", "a")
         f.write(f"\n\nNews----------------------\n{a.i}.\n{city},{date_time}")
@@ -60,27 +57,25 @@ def main():
     if val == 2:
         val = str(input("Type your Advertisement text here: "))
         while True:
-            due_date = input("Type Ad due date here(mm/dd/yyyy): ")
+            due_date = str(input("Type Ad due date here(mm/dd/yyyy): "))
             try:
                 due_date = datetime.strptime(due_date, '%m/%d/%Y').date()
                 break
             except ValueError:
                 print("This is not in the right format")
 
-
-        # my_date = datetime.due_date
         class Advertisement(Publishing):
             print("Private Ad ------------------")
 
         now = datetime.now()
-        future_date = due_date
-        days_left = future_date-now
+        now_date = now.date()
+        days_left = due_date-now_date
         print(days_left)
 
         ad = Advertisement(val)
 
         f = open(r"C:\WORK\Test.txt", "a")
-        f.write(f"\n\n{ad.i}.\nActual until: {due_date},{days_left}")
+        f.write(f"\n\nPrivate Ad ------------------\n{ad.i}.\nActual until: {due_date}, {days_left.days} days left")
         f.close()
 
 if __name__ == '__main__':
