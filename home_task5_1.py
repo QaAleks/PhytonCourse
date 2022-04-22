@@ -72,7 +72,6 @@ def main():
         print("Private News ------------------")
         print(f"{a.i}\n{a.z},{a.pubdays()}")
 
-
     if val == 2:
         val = str(input("Type your Advertisement text here: "))
         while True:
@@ -88,27 +87,13 @@ def main():
         ad.write_ads()
         print(f"\n\nPrivate Ad ------------------\n{ad.i}.\nActual until: {due_date}, {ad.count_days()} days left")
 
-
     if val == 3:
         val = str(input("Share your funny mood with us here: "))
-
-        # ending = str("Stay tuned for our next jokes")
 
         jk = Jokes(val)
         jk.write_joke()
 
-
         print(f"\n\nJoke of the day -------------\n{jk.i}.\n{jk.j}")
-
-
-        # class Jokes(Publishing):
-        #     print("Joke of the day ------------")
-        # jk = Jokes(val)
-        #
-        # f = open(r"C:\WORK\Test.txt", "a")
-        # f.write(f"\n\nJoke of the day ------------\n{jk.i}.\n{ending}")
-        # f.close()
-
 
 if __name__ == '__main__':
     main()
