@@ -48,6 +48,21 @@ class Jokes(Publishing):
         f.write(f"\n\nJoke of the day -------------\n{self.i}.\n{self.j}")
         f.close()
 
+class FromFileToFile :
+
+    def input_from_file(self):
+        with open("C:\WORK\input_text.txt", "r") as source_file, open(r"C:\WORK\Test.txt", "a") as input_text:
+            now = datetime.now()
+            date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
+            input_text.write("\n" + date_time + "\n")
+            for line in source_file:
+                low_case = line.lower()
+                cap_first_char = low_case.capitalize()
+                input_text.write(cap_first_char)
+                print(line)
+            source_file.close()
+            input_text.close()
+
 def main():
     while True:
         try:
@@ -111,16 +126,9 @@ def main():
             print(f"\n\nJoke of the day -------------\n{jk.i}.\n{jk.j}")
 
     if first_select == 2:
-        with open("C:\WORK\input_text.txt", "r") as source_file, open(r"C:\WORK\Test.txt", "a") as input_text:
-            now = datetime.now()
-            date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
-            input_text.write("\n" + date_time + "\n")
-            for line in source_file:
-                low_case = line.lower()
-                cap_first_char = low_case.capitalize()
-                input_text.write(cap_first_char)
-            source_file.close()
-            input_text.close()
+        print("The following text added to the file:\n")
+        input_from_file = FromFileToFile()
+        input_from_file.input_from_file()
 
 if __name__ == '__main__':
     main()
