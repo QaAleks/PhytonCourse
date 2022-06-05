@@ -1,4 +1,6 @@
 from datetime import datetime
+import os
+
 
 class Publishing:
     def __init__(self, text):
@@ -16,7 +18,7 @@ class News(Publishing):
         return date_time
 
     def write_news(self):
-        f = open(r"C:\WORK\Test.txt", "a")
+        f = open(r"Test.txt", "a")
         f.write(f"\n\nNews-------------------------\n{self.i}.\n{self.z},{self.pubdays()}")
         f.close()
 
@@ -32,7 +34,7 @@ class Advertisement(Publishing):
         return days_left
 
     def write_ads(self):
-        f = open(r"C:\WORK\Test.txt", "a")
+        f = open(r"Test.txt", "a")
         f.write(f"\n\nAdvertisement-------------------------\n{self.i}.\n{self.w},{self.count_days()}")
         f.close()
 
@@ -44,14 +46,14 @@ class Jokes(Publishing):
         self.j = default_ending
 
     def write_joke(self):
-        f = open(r"C:\WORK\Test.txt", "a")
+        f = open(r"Test.txt", "a")
         f.write(f"\n\nJoke of the day -------------\n{self.i}.\n{self.j}")
         f.close()
 
 class FromFileToFile :
 
     def input_from_file(self):
-        with open("C:\WORK\input_text.txt", "r") as source_file, open(r"C:\WORK\Test.txt", "a") as input_text:
+        with open("input_text.txt", "r") as source_file, open(r"Test.txt", "a") as input_text:
             now = datetime.now()
             date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
             input_text.write("\n" + date_time + "\n")
@@ -62,6 +64,8 @@ class FromFileToFile :
                 print(line)
             source_file.close()
             input_text.close()
+
+            os.remove("input_text.txt")
 
 def main():
     while True:
