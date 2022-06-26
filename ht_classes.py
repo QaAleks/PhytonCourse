@@ -129,34 +129,31 @@ class FromJson:
     def read_from_json(self):
         with open(r"Test.txt", "a") as input_text: #open('json_file.json', 'r') as j,
             # a = j.read()
-            # loads отдали стринг- превратило в словарь
             conv_to_dict = json.load(open('json_file.json'))
-            # print(conv_to_dict)
-            # if conv_to_dict['type'] not in ['News','Add','Joke']:
-            #     print("Sorry, it is not correct data in the file")
-            # else:
-            #     input_text.write(conv_to_dict)
-            if conv_to_dict["type"].lower() == "news":
-                # type = conv_to_dict['type']
-                text = conv_to_dict['text']
-                city = conv_to_dict['location']
+            for y in range(len(conv_to_dict)):
+                try:
+                    if conv_to_dict[y]["type"].lower() == "news":
+                        # type = conv_to_dict['type']
+                        text = conv_to_dict[y]['text']
+                        city = conv_to_dict[y]['location']
+                        n = News(text_news=text, city=city)
+                        n.write_news()
+                        # print(n)
+                    elif conv_to_dict[y]['type'].lower() == 'joke':
+                        text = conv_to_dict[y]['text']
+                        n = Jokes(text_joke=text)
+                        n.write_joke()
+                    elif conv_to_dict[y]['type'].lower() == 'advertisement':
+                        text = conv_to_dict[y]['text']
+                        f_date = conv_to_dict[y]['future_date']
+                        ff_date = datetime.strptime(f_date,"%Y-%m-%d")
+                        ff_date = ff_date.date()
+                        n = Advertisement(text_ad=text, future_date=ff_date)
+                        n.write_ads()
 
-                n = News(text_news=text, city=city)
-                n.write_news()
-                # print(n)
-            elif conv_to_dict['type'] == 'Joke':
-                # a = ''
-                print("a")
-            elif conv_to_dict['type'] == 'ADV':
-                print("a")
-            else:
-                print("Sorry, it is not correct data in the file")
+                    # else:
+                    #     print("Sorry, it is not correct data in the file")
+                except:
+                    print("Sorry, I didn't understand that.")
 
-
-
-
-
-            #
-            #
-            #
             print(conv_to_dict)
