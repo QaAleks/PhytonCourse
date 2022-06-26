@@ -20,7 +20,7 @@ class News(Publishing):
         return date_time
 
     def write_news(self):
-        f = open(r"C:\WORK\Test.txt", "a")
+        f = open(r"Test.txt", "a")
         f.write(f"\n\nNews-------------------------\n{self.i}.\n{self.z},{self.pubdays()}")
         f.close()
 
@@ -37,7 +37,7 @@ class Advertisement(Publishing):
         return days_left
 
     def write_ads(self):
-        f = open(r"C:\WORK\Test.txt", "a")
+        f = open(r"Test.txt", "a")
         f.write(f"\n\nAdvertisement-------------------------\n{self.i}.\n{self.w},{self.count_days()}")
         f.close()
 
@@ -49,7 +49,7 @@ class Jokes(Publishing):
         self.j = default_ending
 
     def write_joke(self):
-        f = open(r"C:\WORK\Test.txt", "a")
+        f = open(r"Test.txt", "a")
         f.write(f"\n\nJoke of the day -------------\n{self.i}.\n{self.j}")
         f.close()
 
@@ -57,7 +57,7 @@ class Jokes(Publishing):
 class FromFileToFile:
 
     def input_from_file(self):
-        with open("C:\WORK\input_text.txt", "r") as source_file, open(r"C:\WORK\Test.txt", "a") as input_text:
+        with open("input_text.txt", "r") as source_file, open(r"C:\WORK\Test.txt", "a") as input_text:
             now = datetime.now()
             date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
             input_text.write("\n" + date_time + "\n")
@@ -137,12 +137,13 @@ class FromJson:
             # else:
             #     input_text.write(conv_to_dict)
             if conv_to_dict["type"].lower() == "news":
-                type = conv_to_dict['type']
+                # type = conv_to_dict['type']
                 text = conv_to_dict['text']
                 city = conv_to_dict['location']
 
-                n = News(type_text=type, text_news=text, city=city)
+                n = News(text_news=text, city=city)
                 n.write_news()
+                # print(n)
             elif conv_to_dict['type'] == 'Joke':
                 # a = ''
                 print("a")
