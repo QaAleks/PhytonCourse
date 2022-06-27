@@ -57,7 +57,7 @@ class Jokes(Publishing):
 class FromFileToFile:
 
     def input_from_file(self):
-        with open("input_text.txt", "r") as source_file, open(r"C:\WORK\Test.txt", "a") as input_text:
+        with open("input_text.txt", "r") as source_file, open(r"Test.txt", "a") as input_text:
             now = datetime.now()
             date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
             input_text.write("\n" + date_time + "\n")
