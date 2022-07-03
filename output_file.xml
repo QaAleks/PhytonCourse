@@ -1,0 +1,24 @@
+<PublishArticleSet>
+  <PublishArticle name ="News">
+    <Type>News</Type>
+    <TypeData>
+      <Info>Test news for parsing XML</Info>
+      <Location>Odessa</Location>
+    </TypeData>
+  </PublishArticle>
+  <PublishArticle name ="Advertising">
+    <Type>Advertising</Type>
+    <TypeData>
+      <Adv_Info>Test advertisement for parsing XML</Adv_Info>
+      <Adv_Date>2022-09-01</Adv_Date>
+    </TypeData>
+  </PublishArticle>
+  <PublishArticle name ="Joke">
+    <Type>Joke</Type>
+    <TypeData>
+      <Joke_Info>Joke test for parsing XML</Joke_Info>
+      <Ending>See you Soon</Ending>
+    </TypeData>
+  </PublishArticle>
+
+</PublishArticleSet>

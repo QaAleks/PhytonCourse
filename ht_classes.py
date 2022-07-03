@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 import csv
+import xml.etree.ElementTree as ET
 
 
 class Publishing:
@@ -157,3 +158,37 @@ class FromJson:
                     print("Sorry, I didn't understand that.")
 
             print(conv_to_dict)
+
+class FromXML:
+    def read_from_xml(self):
+        with open(r"Test.txt", "a") as input_text:
+            get_tree = ET.parse('output_file.xml')
+            get_root = get_tree.getroot()
+            for article in get_root.findall('PublishArticle'):
+                try:
+                    if article.get('name').lower() == "news":
+                        text = article.find('TypeData').find('Info').text
+                        city = article.find('TypeData').find('Location').text
+                        n = News(text_news=text, city=city)
+                        n.write_news()
+                    elif article.get('name').lower() == 'advertising':
+                        text = article.find('TypeData').find('Adv_Info').text
+                        date = article.find('TypeData').find('Adv_Date').text
+                        ff_date = datetime.strptime(date, "%Y-%m-%d")
+                        ff_date = ff_date.date()
+                        n = Advertisement(text_ad=text, future_date=ff_date)
+                        n.write_ads()
+                    elif article.get('name').lower() == 'joke':
+                        text = article.find('TypeData').find('Joke_Info').text
+                        jk = Jokes(text_joke=text)
+                        jk.write_joke()
+                except:
+                    print("Sorry, I didn't understand that.")
+
+            print(get_root)
+
+
+
+
+
+
