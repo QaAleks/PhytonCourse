@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 import csv
 import xml.etree.ElementTree as ET
-
+import sqlite3
 
 class Publishing:
     def __init__(self, text):
@@ -186,6 +186,58 @@ class FromXML:
                     print("Sorry, I didn't understand that.")
 
             print(get_root)
+
+class ForDB:
+    def __init__(self):
+        self.connection = sqlite3.connect('test_db.db')
+        self.cursor = self.connection.cursor()
+        self.news = 'Some text news'
+        self.location = 'Kyiv'
+        self.adds = 'Some text for add'
+        self.due_date = '2022-09-09'
+        self.joke = 'Some text of joke'
+        self.cursor.execute('create table if not exists news_table(news text, location text)')
+        self.cursor.execute('create table if not exists adds_table(adds text, due_date date)')
+        self.cursor.execute('create table if not exists jokes_table(joke text )')
+
+    def insert_to_db(self):
+        self.cursor.execute(f"select news from news_table where news = '{self.news}'")
+        if self.cursor.fetchone() is not None: #self.news}:
+            print(f'\nYou are trying to load a duplicat value for NEWS')
+        else:
+            self.cursor.execute(f"insert into news_table values('{self.news}','{self.location}')")
+
+        self.cursor.execute('select * from news_table')
+        a = self.cursor.fetchall()
+
+
+        self.cursor.execute(f"select adds from adds_table where adds = '{self.adds}'")
+        if self.cursor.fetchone() is not None:
+            print(f'\nYou are trying to load a duplicat value for ADDs')
+        else:
+            self.cursor.execute(f"insert into adds_table values('{self.adds}','{self.due_date}')")
+
+        self.cursor.execute('select * from adds_table')
+        b = self.cursor.fetchall()
+
+
+        self.cursor.execute(f"select joke from jokes_table where joke = '{self.joke}'")
+        if self.cursor.fetchone() is not None:
+            print(f'\nYou are trying to load a duplicat value for JOKE')
+        else:
+            self.cursor.execute(f"insert into jokes_table values('{self.joke}')")
+
+        self.cursor.execute('select * from jokes_table')
+        c = self.cursor.fetchall()
+
+        return a, b, c
+
+
+
+    def __del__(self):
+        self.connection.commit()
+        self.cursor.close()
+        self.connection.close()
 
 
 

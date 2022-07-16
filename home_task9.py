@@ -1,5 +1,5 @@
 from datetime import datetime
-from ht_classes import News, Jokes, Advertisement, FromFileToFile, WordsCount, FromJson, FromXML
+from ht_classes import News, Jokes, Advertisement, FromFileToFile, WordsCount, FromJson, FromXML, ForDB
 
 from collections import Counter
 import csv
@@ -12,11 +12,12 @@ def main():
                                    '\nEnter 2 if you want add data from the file'
                                    '\nEnter 3 if you want to analize .csv file:'
                                    '\nEnter 4 if you want to load .json file:'
-                                    '\nEnter 5 if you want to load .xml file:'))
+                                    '\nEnter 5 if you want to load .xml file:'
+                                    '\nEnter 6 if you want to load data for DB:'))
         except ValueError:
             print("Wrong input")
             continue
-        if first_select not in [1, 2, 3, 4, 5]:
+        if first_select not in [1, 2, 3, 4, 5, 6]:
             print("Please enter correct number")
             continue
         else:
@@ -88,6 +89,11 @@ def main():
     if first_select == 5:
         read_from_xml = FromXML()
         read_from_xml.read_from_xml()
+
+    if first_select == 6:
+        insert_to_db = ForDB()
+        print(insert_to_db.insert_to_db())
+
 
 
 
